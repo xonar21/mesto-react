@@ -4,14 +4,14 @@ function Card(props) {
 
     function handleClick() {
         props.onCardClick(props.card);
-        console.log(props.card.name)
+        
     } 
 
     return (
         
         
             <div className="element">
-            <button className="element__delete-card"></button>
+            <button onMouseUp={props.onDeleteCard} className="element__delete-card"></button>
             <img  onMouseUp={handleClick} alt={props.card.name} src={props.card.link} className="element__image"/>
             <div className="element__group">
               <h2 className="element__title">{props.card.name}</h2>
