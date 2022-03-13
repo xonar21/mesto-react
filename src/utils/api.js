@@ -64,6 +64,16 @@ class Api {
       })
       .then(res => res.json());
     }
+
+    changeLikeCardStatus(id, isLiked) {
+      if(isLiked) {
+        return this.likeCard(id);
+      }
+      else {
+        return this.unlikeCard(id);
+      }
+    }
+
     likeCard(cardId) {
       return fetch(`${this._baseUrl.baseUrl}/cards/likes/${cardId}`, {
         method: 'PUT',
@@ -91,7 +101,7 @@ class Api {
           authorization: `${this._baseUrl.headers.authorization}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({avatar: data.link})
+        body: JSON.stringify({avatar: data.avatar})
       })
       .then(res => this._handleResponse(res));
     }
