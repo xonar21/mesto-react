@@ -10,7 +10,7 @@ export function ValidationCheck() {
     const target = evt.target;
     const name = target.name;
     const value = target.value;
-console.log(values);
+
     setValues({
       ...values,
       [name]: value
