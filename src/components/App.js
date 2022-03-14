@@ -22,58 +22,51 @@ function App() {
   const[saveValue,setSaveValue] = React.useState(false)
 
   React.useEffect(() => {
-    api.getUserInformation()
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      }); 
+    Promise.all([api.getUserInformation(), api.getCardsFromServer()])
+    .then(([user, cards]) => {
+      setCurrentUser(user)
+      setCards(cards)
+    })
+    .catch(err => console.log(err))
   }, []);
-
 
   function closeAllPopups() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
     setDeletePlacePopupOpen(false);
-    document.removeEventListener('keydown',handleEscPopup);
     setSelectedCard({});
   }
 
-  function handleEscPopup(evt) {
-    if (evt.key === 'Escape') {
-      closeAllPopups();
-    }
-  }
+  React.useEffect(() => {
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    };
 
-  function handleOverlayClose(evt) {
-    if (evt.target === evt.currentTarget) {
-      closeAllPopups();
-    }
-  }
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => document.removeEventListener("keydown", handleEscClose);
+  }, []); 
 
   function handleCardClick(card) {
     setSelectedCard(card);
   }
 
   function handleEditAvatarClick() {
-    document.addEventListener('keydown',handleEscPopup);
     setEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    document.addEventListener('keydown',handleEscPopup);
     setEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    document.addEventListener('keydown',handleEscPopup);
     setAddPlacePopupOpen(true);
   }
 
   function handleDeletePlaceClick(card) {
-    document.addEventListener('keydown',handleEscPopup);
     setCardDelete(card);
     setDeletePlacePopupOpen(true);
   }
@@ -104,17 +97,6 @@ function App() {
         setSaveValue(false);
       })
   }
-
-  React.useEffect(() => {
-    api.getCardsFromServer()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
 
   function handleUpdateUser(res) {
     setSaveValue(true);
@@ -168,13 +150,13 @@ function App() {
           <Main popupDelete={handleDeletePlaceClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} onDeleteCard={handleDeletePlaceClick} onCardClick={handleCardClick} onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick}/>
           <Footer />
           {/* форма редактирования профиля */}
-          <EditProfilePopup overlayClick={handleOverlayClose} saveValue={saveValue} onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} /> 
+          <EditProfilePopup saveValue={saveValue} onUpdateUser={handleUpdateUser} isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} /> 
           {/* форма создания карточки */}
-          <AddPlacePopup overlayClick={handleOverlayClose} saveValue={saveValue} onUpdateCards={handleUpdateCards} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+          <AddPlacePopup saveValue={saveValue} onUpdateCards={handleUpdateCards} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
           {/* форма редактирования аватара */}
-          <EditAvatarPopup overlayClick={handleOverlayClose} saveValue={saveValue}  onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+          <EditAvatarPopup saveValue={saveValue}  onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
           {/* форма удаления карточки*/}
-          <DeleteCardPopup overlayClick={handleOverlayClose} saveValue={saveValue} onSubmit={handleCardDelete} isOpen={isDeletePlacePopupOpen} onClose={closeAllPopups} />
+          <DeleteCardPopup saveValue={saveValue} onSubmit={handleCardDelete} isOpen={isDeletePlacePopupOpen} onClose={closeAllPopups} />
           <ImagePopup 
           card={selectedCard}
           onClose = {closeAllPopups}

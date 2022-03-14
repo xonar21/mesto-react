@@ -3,7 +3,7 @@ import React from 'react';
 function PopupWithForm(props) {
 
     return (
-    <div onMouseUp={props.overlayClick} className={`pop-up pop-up_${props.name} ${props.isOpen ? 'pop-up_opened' : ""}`}>
+    <div className={`pop-up pop-up_${props.name} ${props.isOpen ? 'pop-up_opened' : ""}`}>
       <div className="pop-up__container"> 
         <form onSubmit={props.onSubmit} className={`form form_${props.name}`} name={props.name}>
           <h2 className="form__title">{props.title}</h2>

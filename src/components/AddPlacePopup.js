@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import {ValidationCheck} from '../hooks/ValidationCheck';
+import {useValidationCheck} from '../hooks/useValidationCheck';
 
 function AddPlacePopup(props) {
 const cardsNameRef = React.useRef("");
@@ -12,7 +12,7 @@ const {
     resetForm,
     errors,
     isValid
-  } = ValidationCheck({});
+  } = useValidationCheck({});
   
 
 function handleSubmit(evt) {
@@ -33,7 +33,6 @@ React.useEffect(() => {
 return(
 <PopupWithForm
     isDisabled={!isValid}
-    overlayClick = {props.overlayClick}
     saveValue = {props.saveValue}
     onSubmit = {handleSubmit}
     onClose = {props.onClose}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 import {CurrentUserContext} from '../context/CurrentUserContext';
-import {ValidationCheck} from '../hooks/ValidationCheck';
+import {useValidationCheck} from '../hooks/useValidationCheck';
 
 function EditProfilePopup(props) {
 const currentUser = React.useContext(CurrentUserContext);
@@ -12,11 +12,14 @@ const {
     resetForm,
     errors,
     isValid
-  } = ValidationCheck({});
+  } = useValidationCheck({});
 
 React.useEffect(() => {
     if (props.isOpen) {
-        resetForm();
+        resetForm({
+            name: currentUser.name,
+            subname: currentUser.about,
+          });
     } 
   }, [currentUser, props.isOpen, resetForm]);
 
@@ -29,7 +32,6 @@ function handleSubmit(evt) {
 return (
     <PopupWithForm
         isDisabled={!isValid}
-        overlayClick = {props.overlayClick}
         saveValue = {props.saveValue}
         onSubmit={handleSubmit}
         onClose = {props.onClose}

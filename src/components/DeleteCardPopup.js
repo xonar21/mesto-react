@@ -6,7 +6,6 @@ function DeleteCardPopup(props) {
 return (
 <>
 <PopupWithForm
-    overlayClick = {props.overlayClick}
     saveValue = {props.saveValue}
     onSubmit = {props.onSubmit}
     onClose = {props.onClose}

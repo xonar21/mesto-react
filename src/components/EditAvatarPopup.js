@@ -1,6 +1,6 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
-import {ValidationCheck} from '../hooks/ValidationCheck';
+import {useValidationCheck} from '../hooks/useValidationCheck';
 
 function EditAvatarPopup(props) {
 const avatarRef = React.useRef("");
@@ -11,7 +11,7 @@ const {
     resetForm,
     errors,
     isValid
-  } = ValidationCheck({});
+  } = useValidationCheck({});
 
 function handleSubmit(evt) {
     evt.preventDefault();
@@ -29,7 +29,6 @@ React.useEffect(() => {
 return (
 <PopupWithForm
     isDisabled={!isValid}
-    overlayClick = {props.overlayClick}
     saveValue = {props.saveValue}
     onClose = {props.onClose}
     isOpen = {props.isOpen}

@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 
-export function ValidationCheck() {
+export function useValidationCheck() {
 
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -10,7 +10,7 @@ export function ValidationCheck() {
     const target = evt.target;
     const name = target.name;
     const value = target.value;
-console.log(values);
+
     setValues({
       ...values,
       [name]: value
