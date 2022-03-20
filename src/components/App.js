@@ -31,7 +31,7 @@ function App() {
   const[cardDelete,setCardDelete] = React.useState({});
   const[saveValue,setSaveValue] = React.useState(false);
   const[loggedIn,setLoggedIn] = React.useState(false);
-  const[userEmail,setUserEmail] = React.useState('');
+  const[userEmail,setUserEmail] = React.useState(' ');
   const history = useHistory();
 
   React.useEffect(() => {
