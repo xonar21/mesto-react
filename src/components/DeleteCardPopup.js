@@ -6,6 +6,7 @@ function DeleteCardPopup(props) {
 return (
 <>
 <PopupWithForm
+    display = {'pop-up__noneDisplay'}
     saveValue = {props.saveValue}
     onSubmit = {props.onSubmit}
     onClose = {props.onClose}

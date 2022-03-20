@@ -20,7 +20,9 @@
 /*form*/
 @import url(./blocks/pop-up/pop-up.css);
 @import url(./blocks/pop-up/_opened/pop-up_opened.css);
-
+@import url(./blocks/pop-up/__noneDisplay/pop-up__noneDisplay.css);
+@import url(./blocks/pop-up/__logo/pop-up__logo.css);
+@import url(./blocks/pop-up/__title/pop-up__title.css);
 @import url(./blocks/pop-up/__container/pop-up__container.css);
 @import url(./blocks/form/form.css);
 @import url(./blocks/form/__title/form__title.css);
@@ -36,6 +38,8 @@
 @import url(./blocks/form/__input/-error/_active/form__input-error_active.css);
 @import url(./blocks/form/__button/_delete/form__button_delete.css);
 @import url(./blocks/form/__title/_delete/form__title_delete.css);
+@import url(./blocks/form/__input/_login/form__input_login.css);
+@import url(./blocks/form/__button/_login/form__button_login.css);
 
 /*form*/
 /*elements*/
@@ -52,6 +56,13 @@
 @import url(./blocks/element/__delete-card/_hidden/element__delete-card_hidden.css);
 @import url(./blocks/element/__delete-card/_visible/element__delete-card_visible.css);
 /*elements*/
+/*login*/
+@import url(./blocks/login/login.css);
+@import url(./blocks/login/__title/login__title.css);
+@import url(./blocks/login/__switch/login__switch.css);
+@import url(./blocks/login/__text/login__text.css);
+@import url(./blocks/login/__group/login__group.css);
+/*login*/
 /*footer*/
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__text/footer__text.css);

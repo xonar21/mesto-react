@@ -31,6 +31,7 @@ function handleSubmit(evt) {
 
 return (
     <PopupWithForm
+        display = {'pop-up__noneDisplay'}
         isDisabled={!isValid}
         saveValue = {props.saveValue}
         onSubmit={handleSubmit}

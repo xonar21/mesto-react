@@ -28,6 +28,7 @@ React.useEffect(() => {
 
 return (
 <PopupWithForm
+    display = {'pop-up__noneDisplay'}
     isDisabled={!isValid}
     saveValue = {props.saveValue}
     onClose = {props.onClose}
@@ -38,7 +39,16 @@ return (
     name = 'avatar'
     >
         <label className="form__field">
-            <input onChange={handleChange} value={values.link || ''} ref={avatarRef} className={errors.link ? 'form__input form__input_add_url form__input_type_error' : 'form__input form__input_add_url'} id="form__input-error_delete" type="URL" name="link" placeholder="Ссылка на картинку" required/>
+            <input 
+            onChange={handleChange} 
+            value={values.link || ''} 
+            ref={avatarRef} 
+            className={errors.link ? 'form__input form__input_add_url form__input_type_error' : 'form__input form__input_add_url'} 
+            id="form__input-error_delete" 
+            type="URL" 
+            name="link" 
+            placeholder="Ссылка на картинку" 
+            required/>
             <span className="form__input-error form__input-error_url form__input-error_url-err" >{errors.link}</span>
         </label>
 </PopupWithForm>
